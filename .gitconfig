@@ -1,0 +1,14 @@
+[core]
+	autocrlf = input
+	safecrlf = warn
+	editor = emacs -nw
+[user]
+	name = Eldar Zakirov
+	email = unixod@gmail.com
+[color]
+	ui = true
+[alias]
+	lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+	umr = submodule update --recursive --init
+	addx = "!f() { git ls-files -m | while read i; do echo \"$i\" | grep -Eq \"$1\" && git add \"$i\"; done; }; f"
+	diffx = "!f() { git ls-files -m | while read i; do echo \"$i\" | grep -Eq \"$1\" && git diff \"$i\"; done; }; f"
