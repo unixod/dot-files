@@ -8,7 +8,33 @@
 [color]
 	ui = true
 [alias]
+	# log as graph - show commit logs in pretty format
+	# usage:
+	#    git lag
+	#
 	lag = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+	# recursively update submodules and init in case it is need
+	# usage:
+	#    git umr
+	#
 	umr = submodule update --recursive --init
+
+	# select files through regex and apply <git add> to them
+	# usage:
+	#    git addx <regex-pattern-to-select-files>
+	#
 	addx = "!f() { git ls-files -m | while read i; do echo \"$i\" | grep -Eq \"$1\" && git add \"$i\"; done; }; f"
+
+	# select files through regex and apply <git diff> to them
+	# usage:
+	#    git diffx <regex-pattern-to-select-files>
+	#
 	diffx = "!f() { git ls-files -m | while read i; do echo \"$i\" | grep -Eq \"$1\" && git diff \"$i\"; done; }; f"
+
+	# last commit message
+	# usage:
+	#    git lac	# shows latest commit message
+	#    git lac 3	# shows 3 last commit messages
+	#
+	lac = "!f() { git log --format=%s | head -n ${1-1}; }; f"
