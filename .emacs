@@ -2,7 +2,7 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(set-default 'cursor-type 'bar)
+;(set-default 'cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (when window-system
   (set-background-color "#F0F0F0"))
