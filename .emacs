@@ -10,6 +10,7 @@
 (setq inhibit-startup-message t)
 (global-set-key "\M-n" "\C-u1\C-v")
 (global-set-key "\M-p" "\C-u1\M-v")
+(load-theme 'deeper-blue)
 
 ;;; Packages sources
 
