@@ -6,6 +6,8 @@
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (when window-system
   (set-background-color "#F0F0F0"))
+(tool-bar-mode -1)
+(setq inhibit-startup-message t)
 
 ;;; Packages sources
 
