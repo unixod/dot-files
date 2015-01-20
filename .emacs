@@ -6,6 +6,7 @@
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (when window-system
   (set-background-color "#F0F0F0"))
+(menu-bar-mode -1)
 (tool-bar-mode -1)
 (setq inhibit-startup-message t)
 (global-set-key "\M-n" "\C-u1\C-v")
