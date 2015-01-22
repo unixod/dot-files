@@ -4,6 +4,7 @@
 
 ;(set-default 'cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
 (when window-system
   (set-background-color "#F0F0F0"))
 (menu-bar-mode -1)
