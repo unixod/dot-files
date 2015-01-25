@@ -9,6 +9,8 @@
   (set-background-color "#F0F0F0"))
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
+(display-time-mode 1)
 (setq inhibit-startup-message t)
 (global-set-key "\M-n" "\C-u1\C-v")
 (global-set-key "\M-p" "\C-u1\M-v")
