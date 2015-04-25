@@ -1,6 +1,6 @@
 ;;; General settings
 
-(add-to-list 'load-path "~/.emacs.d")
+;(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;(set-default 'cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
