@@ -1,6 +1,12 @@
-;;; General settings
+;;; Helpers
 
-;(add-to-list 'load-path "~/.emacs.d/lisp")
+(defun ensure-package-installed (&rest packages)
+  "Assure every package is installed"
+  (dolist (pkg packages)
+    (unless (package-installed-p pkg)
+      (package-install pkg))))
+
+;;; General settings
 
 ;(set-default 'cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
@@ -16,11 +22,19 @@
 (global-set-key "\M-p" "\C-u1\M-v")
 (load-theme 'deeper-blue)
 
-;;; Packages sources
+;;; Packages
 
 (setq package-archives  '(("gnu" . "http://elpa.gnu.org/packages/")
 			  ("marmalade" . "http://marmalade-repo.org/packages/")
 			  ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(package-initialize)
+
+(ensure-package-installed
+ 'auto-complete
+ 'ac-slime
+ 'org
+ 'org-ac)
 
 
 ;;; SLIME
