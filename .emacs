@@ -30,6 +30,9 @@
 
 (package-initialize)
 
+(unless package-archive-contents
+  (package-refresh-contents))
+
 (ensure-package-installed
  'auto-complete
  'ac-slime
