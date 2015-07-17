@@ -34,7 +34,8 @@
  'auto-complete
  'ac-slime
  'org
- 'org-ac)
+ 'org-ac
+ 'multi-term)
 
 
 ;;; SLIME
