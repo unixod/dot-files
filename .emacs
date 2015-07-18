@@ -1,5 +1,4 @@
 ;;; Helpers
-
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed"
   (dolist (pkg packages)
@@ -7,8 +6,6 @@
       (package-install pkg))))
 
 ;;; General settings
-
-;(set-default 'cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
 (when window-system
@@ -23,7 +20,6 @@
 (load-theme 'deeper-blue)
 
 ;;; Packages
-
 (setq package-archives  '(("gnu" . "http://elpa.gnu.org/packages/")
 			  ("marmalade" . "http://marmalade-repo.org/packages/")
 			  ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -38,7 +34,8 @@
  'ac-slime
  'org
  'org-ac
- 'multi-term)
+ 'multi-term
+ 'yasnippet)
 
 
 ;;; SLIME
@@ -52,25 +49,16 @@
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
 
-;;; Semantic
-;(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
-;(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-;(add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
-;(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode)
-
-;(semantic-mode 1)
-
-;(semanticdb-enable-gnu-global-databases 'c-mode)
-;(semanticdb-enable-gnu-global-databases 'c++-mode)
-;(when (cedet-etag-version-check)
-;  (semantic-load-enabled-primary-exuberent-ctags-support 'c-mode))
-
 
 ;;; Modes
 (show-paren-mode 1)
+(global-auto-complete-mode t)
+(yas-global-mode 1)
 (set-default 'org-startup-indented 1)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'auto-complete-mode)
+(when (eq system-type 'windows-nt)
+  (setq multi-term-program "cmd.exe"))
 
 ;(add-hook 'c-mode-hook (lambda ()
 ;			 (smart-tabs-insinuate 'c)
