@@ -54,11 +54,15 @@
 (show-paren-mode 1)
 (global-auto-complete-mode t)
 (yas-global-mode 1)
+(add-to-list 'yas-dont-activate
+	     #'(lambda ()
+		 (eq major-mode 'term-mode)))
 (set-default 'org-startup-indented 1)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'auto-complete-mode)
 (when (eq system-type 'windows-nt)
   (setq multi-term-program "cmd.exe"))
+
 
 ;(add-hook 'c-mode-hook (lambda ()
 ;			 (smart-tabs-insinuate 'c)
