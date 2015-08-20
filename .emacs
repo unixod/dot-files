@@ -8,6 +8,8 @@
 ;;; General settings
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
+(global-set-key [C-mouse-4] 'text-scale-increase)
+(global-set-key [C-mouse-5] 'text-scale-decrease)
 (when window-system
   (set-background-color "#F0F0F0"))
 (menu-bar-mode -1)
@@ -35,7 +37,8 @@
  'org
  'org-ac
  'multi-term
- 'yasnippet)
+ 'yasnippet
+ 'cmake-mode)
 
 
 ;;; SLIME
@@ -51,6 +54,7 @@
 
 
 ;;; Modes
+(setq cmake-tab-width 4) ; for cmake-mode
 (show-paren-mode 1)
 (global-auto-complete-mode t)
 (yas-global-mode 1)
