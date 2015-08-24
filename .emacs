@@ -10,8 +10,8 @@
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
-(when window-system
-  (set-background-color "#F0F0F0"))
+(unless (display-graphic-p)
+  (xterm-mouse-mode))
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
