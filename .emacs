@@ -66,6 +66,12 @@
 (add-hook 'org-mode-hook 'auto-complete-mode)
 (when (eq system-type 'windows-nt)
   (setq multi-term-program "cmd.exe"))
+(add-hook 'c-mode-hook
+	  #'(lambda ()
+	      (c-set-style "stroustrup")))
+(add-hook 'c++-mode-hook
+	  #'(lambda ()
+	      (c-set-style "stroustrup")))
 
 
 ;(add-hook 'c-mode-hook (lambda ()
