@@ -19,7 +19,9 @@
 (setq inhibit-startup-message t)
 (global-set-key "\M-n" "\C-u1\C-v")
 (global-set-key "\M-p" "\C-u1\M-v")
-(load-theme 'deeper-blue)
+(load-theme (if (display-graphic-p)
+		'deeper-blue
+	      'wombat))
 
 ;;; Packages
 (setq package-archives  '(("gnu" . "http://elpa.gnu.org/packages/")
