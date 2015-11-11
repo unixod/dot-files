@@ -38,3 +38,9 @@
 	#    git lac 3	# shows 3 last commit messages
 	#
 	lac = "!f() { git log --format=%s | head -n ${1-1}; }; f"
+
+	# just short version of git status
+	# usage:
+	#    git s
+	#
+	s = status
