@@ -22,6 +22,8 @@
 (load-theme (if (display-graphic-p)
 		'deeper-blue
 	      'wombat))
+(setq-default tab-width 4)
+
 
 ;;; Packages
 (setq package-archives  '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -40,7 +42,8 @@
  'org-ac
  'multi-term
  'yasnippet
- 'cmake-mode)
+ 'cmake-mode
+ 'go-mode)
 
 
 ;;; SLIME
@@ -74,6 +77,11 @@
 (add-hook 'c++-mode-hook
 	  #'(lambda ()
 	      (c-set-style "stroustrup")))
+
+;;; Go
+; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
+; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
+(add-hook 'before-save-hook 'gofmt-before-save)
 
 
 ;(add-hook 'c-mode-hook (lambda ()
