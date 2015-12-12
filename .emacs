@@ -83,7 +83,9 @@
 ; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
 ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (add-hook 'before-save-hook 'gofmt-before-save)
-
+(require 'go-autocomplete
+		 (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
+		 t)
 
 ;(add-hook 'c-mode-hook (lambda ()
 ;			 (smart-tabs-insinuate 'c)
