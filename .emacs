@@ -5,6 +5,12 @@
     (unless (package-installed-p pkg)
       (package-install pkg))))
 
+; http://stackoverflow.com/a/23299809
+(defun process-exit-code-and-ouput (program &rest args)
+  "Run PROGRAM with ARGS and return the exit code output goes to the current buffer"
+  (apply 'call-process program nil t nil args))
+
+
 ;;; General settings
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
@@ -83,9 +89,20 @@
 ; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
 ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (add-hook 'before-save-hook 'gofmt-before-save)
-(require 'go-autocomplete
-		 (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
-		 t)
+(when (and (executable-find "go")
+           (getenv "GOPATH"))
+  ;; gocode
+  (unless (require 'go-autocomplete
+                   (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
+                   t)
+    (when (yes-or-no-p "Do you want to install gocode?")
+      (message "Installing gocode...")
+      (if (zerop (process-exit-code-and-ouput "go" "get" "-u" "-v" "github.com/rogpeppe/godef"))
+          (require 'go-autocomplete
+                   (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
+                   t)
+        (message "Can't retrive the github.com/rogpeppe/godef")))))
+
 
 ;(add-hook 'c-mode-hook (lambda ()
 ;			 (smart-tabs-insinuate 'c)
