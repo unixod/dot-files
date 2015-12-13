@@ -8,8 +8,13 @@
 ; http://stackoverflow.com/a/23299809
 (defun process-exit-code-and-ouput (program &rest args)
   "Run PROGRAM with ARGS and return the exit code output goes to the current buffer"
-  (apply 'call-process program nil t nil args))
+  (with-temp-buffer
+    (values (apply 'call-process program nil (current-buffer) nil args)
+            (buffer-string))))
 
+(defun have-go-environment-p ()
+  (and (executable-find "go")
+       (getenv "GOPATH")))
 
 ;;; General settings
 (setq scroll-step 1) ; keyboard scroll one line at a time
@@ -89,19 +94,28 @@
 ; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
 ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (add-hook 'before-save-hook 'gofmt-before-save)
-(when (and (executable-find "go")
-           (getenv "GOPATH"))
+
+(when (have-go-environment-p)
   ;; gocode
-  (unless (require 'go-autocomplete
-                   (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
-                   t)
-    (when (yes-or-no-p "Do you want to install gocode?")
-      (message "Installing gocode...")
-      (if (zerop (process-exit-code-and-ouput "go" "get" "-u" "-v" "github.com/rogpeppe/godef"))
-          (require 'go-autocomplete
-                   (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")
-                   t)
-        (message "Can't retrive the github.com/rogpeppe/godef")))))
+  (let ((go-autocomplete-el (concat (getenv "GOPATH") "/src/github.com/nsf/gocode/emacs/go-autocomplete.el")))
+    (unless (require 'go-autocomplete go-autocomplete-el t)
+      (when (yes-or-no-p "Do you want to install gocode?")
+        (message "Installing gocode...")
+        (multiple-value-bind (status-code stdout) (process-exit-code-and-ouput
+                                                   "go" "get" "-u" "-v" "github.com/nsf/gocode")
+          (message stdout)
+          (if (zerop status-code)
+              (require 'go-autocomplete go-autocomplete-el)
+            (message "Could't retrive the gocode from github.com/nsf/gocode"))))))
+  ;; godef
+  (unless (executable-find "godef")
+    (when (yes-or-no-p "Do you want to install godef?")
+      (message "Installing godef...")
+      (multiple-value-bind (status-code stdout) (process-exit-code-and-ouput
+                                                 "go" "get" "-u" "-v" "github.com/rogpeppe/godef")
+        (message stdout)
+        (unless (zerop status-code)
+          (message "Could't retrive the gocode from  github.com/rogpeppe/godef"))))))
 
 
 ;(add-hook 'c-mode-hook (lambda ()
