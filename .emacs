@@ -31,16 +31,17 @@
 (global-set-key "\M-n" "\C-u1\C-v")
 (global-set-key "\M-p" "\C-u1\M-v")
 (load-theme (if (display-graphic-p)
-		'deeper-blue
-	      'wombat))
+                'deeper-blue
+              'wombat))
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)  ; prevent emacs for mixing tabs and spaces
 
 
 ;;; Packages
-(setq package-archives  '(("gnu" . "http://elpa.gnu.org/packages/")
-			  ("marmalade" . "http://marmalade-repo.org/packages/")
-			  ("melpa" . "http://melpa.milkbox.net/packages/")))
+(setq package-archives  '(("gnu"       . "https://elpa.gnu.org/packages/")
+                          ("marmalade" . "https://marmalade-repo.org/packages/")
+                          ("melpa"     . "https://melpa.org/packages/")
+                          ("org"       . "http://orgmode.org/elpa/")))
 
 (package-initialize)
 
@@ -76,19 +77,19 @@
 (global-auto-complete-mode t)
 (yas-global-mode 1)
 (add-to-list 'yas-dont-activate
-	     #'(lambda ()
-		 (eq major-mode 'term-mode)))
+             #'(lambda ()
+                 (eq major-mode 'term-mode)))
 (set-default 'org-startup-indented 1)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'auto-complete-mode)
 (when (eq system-type 'windows-nt)
   (setq multi-term-program "cmd.exe"))
 (add-hook 'c-mode-hook
-	  #'(lambda ()
-	      (c-set-style "stroustrup")))
+          #'(lambda ()
+              (c-set-style "stroustrup")))
 (add-hook 'c++-mode-hook
-	  #'(lambda ()
-	      (c-set-style "stroustrup")))
+          #'(lambda ()
+              (c-set-style "stroustrup")))
 
 ;;; Go
 ; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
