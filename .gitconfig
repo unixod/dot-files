@@ -39,8 +39,14 @@
 	#
 	lac = "!f() { git log --format=%s | head -n ${1-1}; }; f"
 
-	# just short version of git status
+	# just short version of 'git status' command
 	# usage:
 	#    git s
 	#
 	s = status
+
+	# just short version of 'git branch' command
+	# usage:
+	#    git b
+	#
+	b = branch
