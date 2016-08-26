@@ -56,7 +56,8 @@
  'multi-term
  'yasnippet
  'cmake-mode
- 'go-mode)
+ 'go-mode
+ 'demangle-mode)
 
 
 ;;; SLIME
