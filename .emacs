@@ -17,6 +17,7 @@
        (getenv "GOPATH")))
 
 ;;; General settings
+(setq-default cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
 (global-set-key [C-mouse-4] 'text-scale-increase)
