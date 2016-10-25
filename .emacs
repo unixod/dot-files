@@ -20,6 +20,12 @@
 (setq-default cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
+
+(global-set-key (kbd "C-<up>") 'windmove-up)
+(global-set-key (kbd "C-<down>") 'windmove-down)
+(global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
 ;; (unless (display-graphic-p)
