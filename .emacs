@@ -64,7 +64,8 @@
  'yasnippet
  'cmake-mode
  'go-mode
- 'demangle-mode)
+ 'demangle-mode
+ 'perl6-mode)
 
 
 ;;; SLIME
