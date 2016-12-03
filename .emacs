@@ -91,6 +91,7 @@
 (set-default 'org-startup-indented 1)
 (add-hook 'org-mode-hook 'visual-line-mode)
 (add-hook 'org-mode-hook 'auto-complete-mode)
+(add-hook 'perl6-mode-hook 'auto-complete-mode)
 (when (eq system-type 'windows-nt)
   (setq multi-term-program "cmd.exe"))
 (add-hook 'c-mode-hook
