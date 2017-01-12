@@ -65,8 +65,8 @@
  'cmake-mode
  'go-mode
  'demangle-mode
- 'perl6-mode)
-
+ 'perl6-mode
+ 'markdown-preview-mode)
 
 ;;; SLIME
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -128,13 +128,12 @@
         (unless (zerop status-code)
           (message "Could't retrive the gocode from  github.com/rogpeppe/godef"))))))
 
-
-;(add-hook 'c-mode-hook (lambda ()
-;			 (smart-tabs-insinuate 'c)
-;			 (smart-tabs-mode-enable)
-;			 (smart-tabs-advice c-indent-line c-basic-offset)
-;			 (smart-tabs-advice c-indent-region c-basic-offset)))
-
+;;; Input methods
+(quail-define-package "math" "UTF-8" "Ω" t)
+(quail-define-rules ; add whatever extra rules you want to define here...
+ ("\\from"    #X2190)
+ ("\\to"      #X2192)
+ ("\\over"     #X0305))
 
 ;;; Variables configured via the interactive 'customize' interface
 
