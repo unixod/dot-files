@@ -5,7 +5,7 @@
     (unless (package-installed-p pkg)
       (package-install pkg))))
 
-; http://stackoverflow.com/a/23299809
+                                        ; http://stackoverflow.com/a/23299809
 (defun process-exit-code-and-ouput (program &rest args)
   "Run PROGRAM with ARGS and return the exit code output goes to the current buffer"
   (with-temp-buffer
@@ -26,6 +26,21 @@
 (global-set-key (kbd "C-<left>") 'windmove-left)
 (global-set-key (kbd "C-<right>") 'windmove-right)
 
+;; Changing the windows size using keyboard
+(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
+(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
+
+;; Scrolling down/up (using keyboard) without moving the cursor
+(global-set-key (kbd "S-C-p") (lambda ()
+                                (interactive)
+                                (scroll-down 1)))
+(global-set-key (kbd "S-C-n") (lambda ()
+                                (interactive)
+                                (scroll-up 1)))
+
+
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
 ;; (unless (display-graphic-p)
@@ -35,8 +50,8 @@
 (scroll-bar-mode -1)
 (display-time-mode 1)
 (setq inhibit-startup-message t)
-(global-set-key "\M-n" "\C-u1\C-v")
-(global-set-key "\M-p" "\C-u1\M-v")
+
+
 (load-theme (if (display-graphic-p)
                 'deeper-blue
               'wombat))
@@ -102,8 +117,8 @@
               (c-set-style "stroustrup")))
 
 ;;; Go
-; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
-; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
+                                        ; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
+                                        ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 (when (have-go-environment-p)
@@ -133,7 +148,9 @@
 (quail-define-rules ; add whatever extra rules you want to define here...
  ("\\from"    #X2190)
  ("\\to"      #X2192)
- ("\\over"     #X0305))
+ ("\\over"    #X0305)
+ ("\\intersect"   #X2229)
+ ("\\union"   #X222A))
 
 ;;; Variables configured via the interactive 'customize' interface
 
