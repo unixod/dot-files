@@ -80,8 +80,7 @@
  'cmake-mode
  'go-mode
  'demangle-mode
- 'perl6-mode
- 'markdown-preview-mode)
+ 'perl6-mode)
 
 ;;; SLIME
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
