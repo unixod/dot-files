@@ -17,7 +17,9 @@
        (getenv "GOPATH")))
 
 ;;; General settings
-(setq-default cursor-type 'bar)
+(column-number-mode 1)
+(delete-selection-mode 1) ; make Emacs remove selection when typing.
+;(setq-default cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
 
@@ -43,6 +45,11 @@
 
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
+
+(when (display-graphic-p)
+  (global-set-key (kbd "C-+") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease))
+
 ;; (unless (display-graphic-p)
 ;;   (xterm-mouse-mode))
 (menu-bar-mode -1)
@@ -72,7 +79,7 @@
 
 (ensure-package-installed
  'auto-complete
- 'ac-slime
+ ;; 'ac-slime
  'org
  'org-ac
  'multi-term
@@ -83,15 +90,15 @@
  'perl6-mode)
 
 ;;; SLIME
-(load (expand-file-name "~/quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
+;; (load (expand-file-name "~/quicklisp/slime-helper.el"))
+;; (setq inferior-lisp-program "sbcl")
 
 
-;; SLIME autocompletion in editing sources
-(add-hook 'slime-mode-hook 'set-up-slime-ac)
-(add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'slime-repl-mode))
+;; ;; SLIME autocompletion in editing sources
+;; (add-hook 'slime-mode-hook 'set-up-slime-ac)
+;; (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+;; (eval-after-load "auto-complete"
+;;   '(add-to-list 'ac-modes 'slime-repl-mode))
 
 
 ;;; Modes
