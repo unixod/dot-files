@@ -1,3 +1,6 @@
+;;; Tips to remember:
+;;; Hi-Lock - highlight mode
+
 ;;; Helpers
 (defun ensure-package-installed (&rest packages)
   "Assure every package is installed"
@@ -19,7 +22,7 @@
 ;;; General settings
 (column-number-mode 1)
 (delete-selection-mode 1) ; make Emacs remove selection when typing.
-;(setq-default cursor-type 'bar)
+(setq-default cursor-type 'bar)
 (setq scroll-step 1) ; keyboard scroll one line at a time
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 1) ((control))))
 
@@ -122,6 +125,11 @@
           #'(lambda ()
               (c-set-style "stroustrup")))
 
+(add-hook 'prolog-mode-hook
+          #'(lambda ()
+              (local-set-key (kbd "C-j") 'ediprolog-dwim)))
+(add-hook 'prolog-mode-hook 'auto-complete-mode)
+
 ;;; Go
                                         ; http://dominik.honnef.co/posts/2013/03/writing_go_in_emacs/
                                         ; http://tleyden.github.io/blog/2014/05/22/configure-emacs-as-a-go-editor-from-scratch/
@@ -158,7 +166,21 @@
  ("\\intersect"   #X2229)
  ("\\union"   #X222A))
 
-;;; Variables configured via the interactive 'customize' interface
 
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (graphviz-dot-mode ediprolog yasnippet vlf prolog perl6-mode org-ac multiple-cursors multi-term go-mode demangle-mode company-irony cmake-mode)))
+ '(term-unbind-key-list
+   (quote
+    ("C-z" "C-x" "C-c" "C-h" "C-y" "<ESC>" "C-<up>" "C-<down>" "C-<right>" "C-<left>"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
